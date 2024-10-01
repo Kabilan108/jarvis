@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: Ruff Format
+        entry: ruff format
+        language: system
+        types: [python]
+        args: [--config=~/.config/ruff/ruff.toml]
+
+      - id: ruff-check
+        name: Ruff Check
+        entry: ruff check
+        language: system
+        types: [python]
+        args: [--fix, --config=~/.config/ruff/ruff.toml]

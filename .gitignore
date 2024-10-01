@@ -1,0 +1,8 @@
+__pycache__/
+node_modueles/
+.venv/
+.env*
+logs/
+data/
+.ruff_cache/
+.logfire/

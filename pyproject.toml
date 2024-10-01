@@ -1,0 +1,23 @@
+[project]
+name = "core"
+version = "0.1.0"
+description = "Core module for the JARVIS bot. Inlcudes modules shared between the core telegram bot service and the API control layer."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard]>=0.115.0",
+    "pydantic>=2.9.2",
+    "pydantic-settings>=2.5.2",
+    "python-telegram-bot>=21.6",
+    "logfire[fastapi]>=1.0.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ipdb>=0.13.13",
+    "ipython-icat>=0.2.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
