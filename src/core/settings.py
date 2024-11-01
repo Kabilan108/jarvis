@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     LOGFIRE_TOKEN: str
     MONGODB_NAME: str = ""
     MONGODB_URI: str = ""
-    TELEGRAM_TOKEN: str
+    BOTFATHER_TOKEN: str
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

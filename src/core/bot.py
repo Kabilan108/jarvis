@@ -1,7 +1,7 @@
 from telegram.ext import ApplicationBuilder
 from core.settings import settings
 
-app = ApplicationBuilder().token(settings.TELEGRAM_TOKEN).build()
+app = ApplicationBuilder().token(settings.BOTFATHER_TOKEN).build()
 
 
 def get_application():
