@@ -5,7 +5,7 @@ import pydantic
 
 class Settings(BaseSettings):
     API_KEY: str = "api-key"
-    LOG_LEVEL: LevelName = "info"
+    LOG_LEVEL: LevelName = "debug"
     LOGFIRE_TOKEN: str
     MONGODB_NAME: str = ""
     MONGODB_URI: str = ""
