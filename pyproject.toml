@@ -10,12 +10,14 @@ dependencies = [
     "pydantic-settings>=2.5.2",
     "python-telegram-bot>=21.6",
     "logfire[fastapi]>=1.0.0",
+    "sqlmodel>=0.0.22",
 ]
 
 [tool.uv]
 dev-dependencies = [
     "ipdb>=0.13.13",
     "ipython-icat>=0.2.0",
+    "pytest>=8.3.3",
 ]
 
 [build-system]

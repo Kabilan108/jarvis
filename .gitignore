@@ -6,3 +6,4 @@ logs/
 data/
 .ruff_cache/
 .logfire/
+Session.vim
