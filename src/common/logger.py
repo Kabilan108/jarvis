@@ -1,25 +1,28 @@
 from fastapi import FastAPI
+from logfire import Logfire
 
 from common.settings import settings
 
 
-def get_logger(service: str):
+def get_logger(service: str) -> Logfire:
     import logfire
 
-    logfire.configure(
+    logger = logfire.configure(
         service_name=service,
         token=settings.LOGFIRE_TOKEN,
         console=logfire.ConsoleOptions(
             min_log_level=settings.LOG_LEVEL,
         ),
     )
-    return logfire
-
-
-def get_api_logger(fastapi_app: FastAPI):
-    logger = get_logger("jarvis-tg-api")
-    logger.instrument_fastapi(fastapi_app)
+    # INFO: monitor how much this costs over time
+    logger.instrument_system_metrics()
     return logger
 
 
-bot_logger = get_logger("jarvis-tg-bot")
+def get_api_logger(fastapi_app: FastAPI) -> Logfire:
+    logger = get_logger("api")
+    logger.instrument_fastapi(app=fastapi_app, capture_headers=True)
+    return logger
+
+
+bot_logger = get_logger("telegram-bot")
