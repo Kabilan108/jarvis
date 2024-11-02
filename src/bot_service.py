@@ -2,13 +2,13 @@ from telegram.ext import CommandHandler, filters, MessageHandler
 
 from time import strftime
 
-from core.commands import (
+from common.commands import (
     help,
     start,
     unknown,
 )
-from core.logger import bot_logger
-from core.bot import get_application
+from common.logger import bot_logger
+from common.bot import get_application
 
 
 def main():

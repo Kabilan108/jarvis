@@ -3,8 +3,8 @@ from telegram import (
 )
 from telegram.ext import ContextTypes
 
-from core.schema import ChatMetadata
-from core.logger import bot_logger
+from common.schema import ChatMetadata
+from common.logger import bot_logger
 
 
 def get_metadata(update: Update) -> ChatMetadata:

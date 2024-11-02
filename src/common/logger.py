@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from core.settings import settings
+from common.settings import settings
 
 
 def get_logger(service: str):

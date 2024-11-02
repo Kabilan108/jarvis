@@ -1,5 +1,5 @@
 [project]
-name = "core"
+name = "common"
 version = "0.1.0"
 description = "Core module for the JARVIS bot. Inlcudes modules shared between the core telegram bot service and the API control layer."
 readme = "README.md"

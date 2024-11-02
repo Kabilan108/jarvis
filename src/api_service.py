@@ -2,10 +2,10 @@ from fastapi import Depends, FastAPI, HTTPException, Security, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
 
-from core.schema import APIResponse, TelegramMessage
-from core.logger import get_api_logger
-from core.bot import get_bot_instance
-from core.settings import settings
+from common.schema import APIResponse, TelegramMessage
+from common.logger import get_api_logger
+from common.bot import get_bot_instance
+from common.settings import settings
 
 
 app = FastAPI()

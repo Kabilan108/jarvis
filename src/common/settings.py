@@ -1,10 +1,11 @@
-import pydantic
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from logfire import LevelName
+import pydantic
 
 
 class Settings(BaseSettings):
     API_KEY: str = "api-key"
-    LOG_LEVEL: str = "info"
+    LOG_LEVEL: LevelName = "info"
     LOGFIRE_TOKEN: str
     MONGODB_NAME: str = ""
     MONGODB_URI: str = ""

@@ -1,5 +1,5 @@
 from telegram.ext import ApplicationBuilder
-from core.settings import settings
+from common.settings import settings
 
 app = ApplicationBuilder().token(settings.BOTFATHER_TOKEN).build()
 
