@@ -86,11 +86,16 @@ if [ ! -f "$VENV_ACTIVATE" ]; then
   exit 1
 fi
 
+if [ ! -f "$DOTENV" ]; then
+  log ERROR "$DOTENV not found"
+  exit 1
+fi
+
 mkdir -p "$LOG_DIR"
 activate_venv
 
 BOT_PID=$(start_bot_service "$BOT_SCRIPT")
-API_PID=$(start_api_service "$API_SCRIPT")
+API_PID=$(start_api_service "$API_SCRIPT" dev)
 
 while true; do
   if check_process "$BOT_PID"; then
@@ -99,7 +104,7 @@ while true; do
   fi
   if check_process "$API_PID"; then
     log ERROR "API service crashed... restarting."
-    API_PID=$(start_api_service "$API_SCRIPT")
+    API_PID=$(start_api_service "$API_SCRIPT" dev)
   fi
   sleep 5
 done
