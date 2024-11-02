@@ -33,9 +33,9 @@ start_api_service() {
   local log_file="$LOG_DIR/$(basename ${script%.*}).log"
   echo -e "---[API][$(get_date)]--------------------------------------------\n">> $log_file
   if [ "$mode" = "dev" ]; then
-    nohup fastapi dev "$script" >> "$log_file" 2>&1 &
+    FORCE_COLOR=1 nohup fastapi dev "$script" >> "$log_file" 2>&1 &
   else
-    nohup fastapi run "$script" >> "$log_file" 2>&1 &
+    FORCE_COLOR=1 nohup fastapi run "$script" >> "$log_file" 2>&1 &
   fi
   log INFO "started API service [PID: $(echo $!)]"
 }
@@ -44,7 +44,7 @@ start_bot_service() {
   local script=$1
   local log_file="$LOG_DIR/$(basename ${script%.*}).log"
   echo -e "---[BOT][$(get_date)]--------------------------------------------\n">> $log_file
-  PYTHONUNBUFFERED=1 nohup python "$script" >> "$log_file" 2>&1 &
+  PYTHONUNBUFFERED=1 FORCE_COLOR=1 nohup python "$script" >> "$log_file" 2>&1 &
   log INFO "started BOT service [PID: $(echo $!)]"
 }
 
