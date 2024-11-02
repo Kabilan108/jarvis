@@ -4,11 +4,12 @@ import pydantic
 
 
 class Settings(BaseSettings):
-    API_KEY: str = "api-key"
-    LOG_LEVEL: LevelName = "debug"
+    NAME: str = "jarvis"
+    VERSION: str = "0.0.1"
+
+    API_KEY: str
+    LOG_LEVEL: LevelName
     LOGFIRE_TOKEN: str
-    MONGODB_NAME: str = ""
-    MONGODB_URI: str = ""
     BOTFATHER_TOKEN: str
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
