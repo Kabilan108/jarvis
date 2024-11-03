@@ -7,21 +7,26 @@ from fastapi import (
     Security,
     status,
     UploadFile,
+    Request,
 )
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
 from typing import List, Optional
 from datetime import datetime
+import time
 
 from common.schema import APIResponse, TelegramAttachment
-from common.logger import get_api_logger
+from common.logger import get_api_logger, get_metric_loggers
 from common.bot import get_bot_instance
 from common.settings import settings
 
-
-# TODO: implement some middleware that allows you to log request duration (with some
-#       metadata) to logfire. use logfire.metric_histogram
 app = FastAPI()
+bot = get_bot_instance()
+logger = get_api_logger(app)
+metrics = get_metric_loggers(logger)
+
+api_key_header = Security(APIKeyHeader(name="X-API-Key", auto_error=False))
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,10 +34,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-bot = get_bot_instance()
-logger = get_api_logger(app)
-
-api_key_header = Security(APIKeyHeader(name="X-API-Key", auto_error=False))
 
 
 def get_api_key(api_key: str = api_key_header):
@@ -43,6 +44,15 @@ def get_api_key(api_key: str = api_key_header):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or missing API key",
         )
+
+
+@app.middleware("http")
+async def request_duration_middleware(request: Request, call_next):
+    start_time = time.time()
+    response = await call_next(request)
+    duration = time.time() - start_time
+    metrics["request_duration"].record(duration)
+    return response
 
 
 @app.get("/health", status_code=status.HTTP_200_OK)

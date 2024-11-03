@@ -25,4 +25,14 @@ def get_api_logger(fastapi_app: FastAPI) -> Logfire:
     return logger
 
 
+def get_metric_loggers(logger: Logfire) -> dict:
+    return {
+        "request_duration": logger.metric_histogram(
+            name="http_request_duration_seconds",
+            unit="s",
+            description="HTTP request duration in seconds",
+        )
+    }
+
+
 bot_logger = get_logger("telegram-bot")
