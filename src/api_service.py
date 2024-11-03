@@ -15,7 +15,7 @@ from typing import List, Optional
 from datetime import datetime
 import time
 
-from common.schema import APIResponse, TelegramAttachment
+from common.models import APIResponse, TelegramAttachment
 from common.logger import get_api_logger, get_metric_loggers
 from common.bot import get_bot_instance
 from common.settings import settings

@@ -3,7 +3,7 @@ from telegram import (
 )
 from telegram.ext import ContextTypes
 
-from common.schema import ChatMetadata
+from common.models import ChatMetadata
 from common.logger import bot_logger
 
 

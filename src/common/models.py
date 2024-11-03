@@ -1,3 +1,5 @@
+# data models for the bot and API
+
 from pydantic import BaseModel, Field
 from fastapi import UploadFile
 import mimetypes
